@@ -1,0 +1,4 @@
+// Register Model
+require('./notification');
+
+

@@ -1,0 +1,18 @@
+type ResponseMessage {
+  message: String
+}
+
+type Query {
+    
+}
+
+type Mutation {
+  queSendEmail(mailto: String!, textMessage: String!, subject: String!): ResponseMessage,
+  queSendSms(message: String!, subject: String!, phoneNum: String!): ResponseMessage,
+  queSendTemplateEmail(mailto: String!, templateName: String!, templateData: String!): ResponseMessage
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}

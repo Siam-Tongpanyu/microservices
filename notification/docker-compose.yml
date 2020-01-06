@@ -1,0 +1,44 @@
+version: '3.1'
+
+services:
+  
+  api: 
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    volumes:
+      - .:/opt/app:delegated
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      JWT_SECRET: GCx$Bwfh^M6ZusvGv$Bwj5S!K7#
+      JWT_EXPIRATION_MINUTES: 3600
+      MONGO_URI: "mongodb://mongo:27017/notificate"
+      SYSTEM_EMAIL: siam@mohara.co
+      AWS_ACCESS_KEY: xxxxxxxxxxxxxxxx
+      AWS_SECRET_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      AWS_REGION: eu-west-1
+      AWS_NOTIFICATION_QUEUE: https://sqs.eu-west-1.amazonaws.com/377333781106/Notification_Queue_Service           
+    depends_on:
+      - mongo
+    ports:
+      - 3000:3000
+    links:
+      - mongo 
+
+  mongo:
+    image: mongo
+    restart: always
+    command: mongod --storageEngine=wiredTiger
+    volumes:
+      - ./.docker/mongo-db:/data/db
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongo
+    links:
+      - mongo

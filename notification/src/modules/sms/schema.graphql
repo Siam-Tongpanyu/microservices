@@ -1,0 +1,23 @@
+type SmsNotification {
+  _id: String,
+  senderId: String,
+  subject: String,
+  message: String, 
+  type: String,  
+  targetMobile: String,
+  createdAt: String,
+  messageId: String
+}
+
+type Query {
+  getSmsLog(phoneNum: [String]): [SmsNotification] 
+}
+
+type Mutation {
+  sendSmsNoti(message: String!, subject: String!, phoneNum: String!): SmsNotification
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}

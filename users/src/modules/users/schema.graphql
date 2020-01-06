@@ -1,0 +1,37 @@
+scalar JSON
+type User {
+  _id: String,
+  name: String,
+  provider: String,
+  uid: String,
+  mid: String,
+  avatar: String,
+  email: String,
+  mobile: String,
+  role: String,
+  token: String,
+  datas: JSON,
+}
+
+type PublicUser {
+  _id: String,
+  name: String,  
+  avatar: String
+}
+
+type Query {
+  user: User,
+  users(_id: [String]): [User],
+  getUser(_id: String!): PublicUser,
+  getUsers(_id: [String]): [PublicUser] 
+}
+
+type Mutation {
+  facebookAuth(email: String!, uid: String!, mid: String!, name: String!, avatar: String, datas: JSON): User,
+  guestAuth(mid: String!): User
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}

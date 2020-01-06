@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+  
+  api: 
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    volumes:
+      - .:/opt/app:delegated
+    environment:
+      NODE_ENV: development
+      PORT: 3001
+      JWT_SECRET: GCx$Bwfh^M6ZusvGv$Bwj5S!K7#
+      JWT_EXPIRATION_MINUTES: 3600
+      AWS_ACCESS_KEY: xxxxxxxxxxxxxxxxxx
+      AWS_SECRET_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxx
+      AWS_REGION: eu-west-1
+      AWS_NOTIFICATION_QUEUE: https://sqs.eu-west-1.amazonaws.com/377333781106/Notification_Queue_Service
+    ports:
+      - 3001:3001
+    
+
+ 

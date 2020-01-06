@@ -1,0 +1,30 @@
+type EmailNotification {
+  _id: String,
+  senderId: String,
+  subject: String,
+  message: String, 
+  type: String,
+  targetEmail: String,  
+  createdAt: String,
+  messageId: String
+}
+
+type ResponseMessage {
+  message: String
+}
+
+type Query {
+  getMailLog(email: [String]): [EmailNotification] 
+}
+
+type Mutation {
+  sendMailNoti(mailto: String!, textMessage: String!, subject: String!, sendermail: String!): EmailNotification,
+  sendMailsNoti(mailto: [String!], textMessage: String!, subject: String!, sendermail: String!): [EmailNotification],
+  createMailTemplate(name: String!, subject: String, htmlfile: String!, textfile: String): ResponseMessage,
+  sendMailTemplateNoti(mailto: String!, templateName: String!, templateData: String!, sendermail: String!): EmailNotification
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
