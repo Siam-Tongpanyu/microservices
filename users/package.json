@@ -13,7 +13,7 @@
   "author": "Siam Tongpanyu <siam@mohara.co>",
   "license": "ISC",
   "dependencies": {
-    "apollo-server-express": "^1.3.6",
+    "apollo-server-express": "^2.14.2",
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
